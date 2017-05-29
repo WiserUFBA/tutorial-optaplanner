@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+  <!-- Domain model configuration -->
+  <scanAnnotatedClasses/>
+
+  <!-- Score configuration -->
+  <scoreDirectorFactory>
+    <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
+    <easyScoreCalculatorClass>br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.solver.BundleBalancerEasyScoreCalculator</easyScoreCalculatorClass>
+    <!--<scoreDrl>org/optaplanner/examples/cloudbalancing/solver/cloudBalancingScoreRules.drl</scoreDrl>-->
+  </scoreDirectorFactory>
+
+  <!-- Optimization algorithms configuration -->
+  <termination>
+    <secondsSpentLimit>30</secondsSpentLimit>
+  </termination>
+</solver>
