@@ -12,6 +12,11 @@
 
   <!-- Optimization algorithms configuration -->
   <termination>
+    <!-- Não deve gastar mais de 30 segundos -->
     <secondsSpentLimit>30</secondsSpentLimit>
+    <!-- Se atingir um score de 0 de custo de hardware e 0 de gasto de software -->
+    <bestScoreLimit>0hard/0soft</bestScoreLimit>
+    <!-- Não deve ultrapassar 100k testes -->
+    <calculateCountLimit>100000</calculateCountLimit>
   </termination>
 </solver>

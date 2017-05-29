@@ -39,12 +39,15 @@ public class BundleBalancerEasyScoreCalculator implements EasyScoreCalculator<Co
                 }
             }
 
-            /* Pontuação **Hard** é a capacidade dos nós que não está sendo excedida */
+            /* Pontuação **Hard** é a capacidade dos que está sendo excedida */
             int capacityAvailable = host.getCapacity() - capacityUsed;
             if (capacityAvailable < 0) {
                 hardScore += capacityAvailable;
             }
 
+            /* Como o objetivo é manter o sistema balanceado ou seja com uma 
+               quantidade de nós próximas então temos outra métrica hard */
+            
             /* Incrementa o numero de host usados */
             if(used){
                 numHostUsed++;
@@ -52,7 +55,12 @@ public class BundleBalancerEasyScoreCalculator implements EasyScoreCalculator<Co
         }
         
         /* Pontuação **Soft** é o número de nós que não estão sendo utilizados quanto mais nós utilizados melhor */
-        int softScore = numHostUsed - controller.getHostList().size();
+        int softScore = 0;
+        
+        /* Se a quantidade de bundles for menor que a quantidade de hosts teremos sempre um host com ou sem nenhum bundle */
+        if(controller.getBundleList().size() >= controller.getHostList().size()){
+            softScore = numHostUsed - controller.getHostList().size();
+        }
         
         /* Imprime o resultado da rodada */
         Controller.CONTADOR_RODADA++;
