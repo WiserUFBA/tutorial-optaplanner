@@ -47,6 +47,9 @@ public class BundleBalancerEasyScoreCalculator implements EasyScoreCalculator<Co
 
             /* Como o objetivo é manter o sistema balanceado ou seja com uma 
                quantidade de nós próximas então temos outra métrica hard */
+ 
+            /* Só que eu ainda não sei qual é ela */
+            
             
             /* Incrementa o numero de host usados */
             if(used){

@@ -50,10 +50,11 @@ public class BundleBalancerHelloWorld {
         
         /* Tempo execução */
         long millis_fim = System.currentTimeMillis() - millis_inicio;
-        String tempo_execucao = String.format("%02d:%02d", 
+        String tempo_execucao = String.format("%02d:%02d.%04d", 
             TimeUnit.MILLISECONDS.toMinutes(millis_fim),
             TimeUnit.MILLISECONDS.toSeconds(millis_fim) - 
-            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis_fim))
+            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis_fim)),
+            (millis_fim % 1000)
         );
         System.out.println("\nRotina de Balanceamento finalizada em " + tempo_execucao + " min");
         
