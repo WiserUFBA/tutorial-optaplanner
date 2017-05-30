@@ -47,7 +47,7 @@ public class Bundle {
         this.capacityRequired = capacityRequired;
     }
 
-    @PlanningVariable(valueRangeProviderRefs = {"computerRange"},
+    @PlanningVariable(valueRangeProviderRefs = {"hostRange"},
             strengthComparatorClass = HostStrengthComparator.class)
     public Host getHostAssociated() {
         return hostAssociated;

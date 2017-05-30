@@ -44,7 +44,7 @@ public class Controller implements Solution<HardSoftScore>{
         hostList.add(host);
     }
     
-    @ValueRangeProvider(id = "computerRange")
+    @ValueRangeProvider(id = "hostRange")
     public List<Host> getHostList() {
         return hostList;
     }
