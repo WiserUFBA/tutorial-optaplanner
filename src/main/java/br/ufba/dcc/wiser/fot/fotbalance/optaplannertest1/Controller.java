@@ -8,11 +8,11 @@ package br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1;
 import br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.entity.Host;
 import br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.entity.Bundle;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
+import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
-import org.optaplanner.core.api.domain.solution.Solution;
+import org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 
@@ -21,7 +21,7 @@ import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
  * @author jeferson
  */
 @PlanningSolution
-public class Controller implements Solution<HardSoftScore>{
+public class Controller{
 
     public static int CONTADOR_RODADA = 0;
     
@@ -45,6 +45,7 @@ public class Controller implements Solution<HardSoftScore>{
     }
     
     @ValueRangeProvider(id = "hostRange")
+    @ProblemFactCollectionProperty
     public List<Host> getHostList() {
         return hostList;
     }
@@ -62,24 +63,14 @@ public class Controller implements Solution<HardSoftScore>{
         this.bundleList = bundleList;
     }
     
-    @Override
+    @PlanningScore
     public HardSoftScore getScore() {
         return score;
-    }
-
-    @Override
+    }   
     public void setScore(HardSoftScore score) {
         this.score = score;
     }
-    
-    @Override
-    public Collection<? extends Object> getProblemFacts() {
-        List<Object> facts = new ArrayList<>();
-        facts.addAll(hostList);
-        // Do not add the planning entity's (processList) because that will be done automatically
-        return facts;
-    }
-    
+        
     void displayResultado() {
         for(Host host : hostList){
             System.out.println("Bundles Associados => " + host.getLabel());

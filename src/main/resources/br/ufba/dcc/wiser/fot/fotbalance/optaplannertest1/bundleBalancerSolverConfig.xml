@@ -5,7 +5,6 @@
 
   <!-- Score configuration -->
   <scoreDirectorFactory>
-    <scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
     <!-- Classe de pontuação simples -->
     <!--<easyScoreCalculatorClass>br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.solver.BundleBalancerEasyScoreCalculator</easyScoreCalculatorClass>-->
     <!-- Classe de pontuação avançada, incremental -->
