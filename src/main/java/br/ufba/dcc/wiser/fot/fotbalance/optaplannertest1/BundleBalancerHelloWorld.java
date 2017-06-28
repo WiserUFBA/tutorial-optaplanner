@@ -41,18 +41,26 @@ public class BundleBalancerHelloWorld {
         termination_config.setSecondsSpentLimit(new Long(10));
         termination_config.setScoreCalculationCountLimit(new Long(100000));
 
-        ScanAnnotatedClassesConfig scann_class_config = new ScanAnnotatedClassesConfig();
-
         List<String> import_list = new ArrayList();
         import_list.add("br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1");
         import_list.add("br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.entity");
         import_list.add("br.ufba.dcc.wiser.fot.fotbalance.optaplannertest1.solver");
-
+        
+        ScanAnnotatedClassesConfig scann_class_config = new ScanAnnotatedClassesConfig();
         scann_class_config.setPackageIncludeList(import_list);
-
+        
         solver_config.setTerminationConfig(termination_config);
-        solver_config.setScanAnnotatedClassesConfig(scann_class_config);
         solver_config.setScoreDirectorFactoryConfig(score_director);
+        
+        /* GERALMENTE O SCANN ANNOTATED CLASSES É O SUFICIENTE PARA ENCONTRAR AS 
+           CLASSES DE MAS SE POR ALGUMA RAZÃO EXTRAORDINÁRIA (COF*COF*OSGi*COF*Karaf*COF)
+           NÃO FOR COMENTE A LINHA ABAIXO E USE A DEFINIÇÃO FORÇADA DAS CLASSES */
+        //solver_config.setScanAnnotatedClassesConfig(scann_class_config);
+        /* E UTILIZE AS LINHAS A SEGUIR */
+        List<Class<?>> entity_class_list = new ArrayList();
+        entity_class_list.add(Bundle.class);
+        solver_config.setEntityClassList(entity_class_list);
+        solver_config.setSolutionClass(Controller.class);
         
         return solver_config;
     }
